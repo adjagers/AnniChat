@@ -4,7 +4,7 @@
   "description": "Live chat",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js --exec babel-node -e js",
+    "start": "nodemon ./server.js --exec babel-node -e js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

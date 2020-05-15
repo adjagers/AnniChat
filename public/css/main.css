@@ -1,0 +1,53 @@
+body {
+    font-family: monospace;
+}
+.container {
+    margin: 0 auto;
+}
+
+h2 {
+    margin: 0;
+}
+
+.header {
+    height: 70px;
+    line-height: 70px;
+    background: #d80032;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    color: #edf2f4;
+}
+
+form {
+    height: 300px;
+    margin-top: 50px;
+    margin: 0 auto;
+    color: white;
+    background: #2b2d42;
+    width: 90%;
+}
+
+.form-control {
+    padding: 12px;
+    width: 74%;
+    margin: 0 auto;
+}
+
+.btn {
+    border: none;
+    background: #d80032;
+    margin-top: 30px;
+    padding: 10px 15px 10px 15px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.message-content {
+    background: #fb6c6c;
+    color: white;
+    margin: 10px;
+    border-radius: 4px;
+    padding: 6px;
+    display: inline-flex;
+}
