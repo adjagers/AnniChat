@@ -1,0 +1,13 @@
+.form-control {
+    padding: 12px;
+    width: 74%;
+    margin: 0 auto;
+}
+
+.message {
+    padding: 4px;
+    width: 70%;
+    border-radius: 8px;
+    margin: 10px auto;
+    background: orangered;
+}

@@ -1,8 +1,9 @@
 const path = require('path');
 const http = require('http');
 const express = require('express');
-const socketio = require('socket.io')
-
+const socketio = require('socket.io');
+const formatMessage = require('./public/utils/messages');
+const {userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./public/utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -11,26 +12,46 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('*/css',express.static('public/css'));
 app.use('*/js',express.static('public/js'));
+app.use('*/js',express.static('public/utils'));
+
+const botName = 'Annichat Bot';
 
 
 // Runs the client
 
 io.on('connection', socket => {
+    socket.on('joinRoom', ({username, room}) => {
+        const user = userJoin(socket.id, username, room);
+        socket.join(user.room);
 
-    // User connects to server
-    console.log('new connection')
-    socket.emit('message', 'welcome to AnniChat!');
-    socket.broadcast.emit('message', 'A user has joined the chat.');
 
-    // User disconnects to server
-    socket.on('disconnect', () => {
-        io.emit('message', 'A user has left the chat.')
-    });
+
+    // Welcome current user
+    socket.emit('message', formatMessage(botName, 'welcome to AnniChat!'));
+
+
+    socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat`));
+
+ 
+    })
+
+
 
     // Listen for user message
-    socket.on('chatMessage', (msg) => {
-        io.emit('message', msg);
+    socket.on('chatMessage', msg => {
+        const user = getCurrentUser(socket.id)
+
+        io.to(user.room).emit('message', formatMessage(user.username, msg));
     })
+
+       // User disconnects to server
+       socket.on('disconnect', () => {
+           const user = userLeave(socket.id);
+
+        if(user) {
+        io.to(user.room).emit('message', formatMessage(botName, `${user.username} has left the chat`));
+        }
+    });
 });
 
 
