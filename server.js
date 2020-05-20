@@ -16,7 +16,7 @@ app.use('*/js',express.static('public/utils'));
 
 const botName = 'Annichat Bot';
 
-const port = process.env.port || 3000;
+const port = process.env.port;
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
