@@ -14,7 +14,11 @@ socket.on('message', message => {
 
 
 
+// Join the room
 socket.emit('joinRoom', {username, room});
+
+// Get room and users
+
 // On message submit
 
   chatForm.addEventListener('submit', (e) => {
@@ -38,6 +42,7 @@ socket.emit('joinRoom', {username, room});
     </p>`;
     document.querySelector('.chat-messages').appendChild(div);
  }
+
 
 
 

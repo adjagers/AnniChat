@@ -5,9 +5,10 @@
 }
 
 .message {
+    color: #fff;
     padding: 4px;
     width: 70%;
     border-radius: 8px;
     margin: 10px auto;
-    background: orangered;
+    background: rgb(255, 127, 80);
 }

@@ -16,7 +16,7 @@ app.use('*/js',express.static('public/utils'));
 
 const botName = 'Annichat Bot';
 
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
@@ -52,6 +52,10 @@ io.on('connection', socket => {
         io.to(user.room).emit('message', formatMessage(botName, `${user.username} has left the chat`));
         }
     });
+
+    // User and Chat info
+
+    
 });
 
 
