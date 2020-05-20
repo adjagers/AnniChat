@@ -16,6 +16,11 @@ app.use('*/js',express.static('public/utils'));
 
 const botName = 'Annichat Bot';
 
+const port = process.env.port || 3000;
+
+server.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
 
 // Runs the client
 
@@ -24,18 +29,13 @@ io.on('connection', socket => {
         const user = userJoin(socket.id, username, room);
         socket.join(user.room);
 
-
-
     // Welcome current user
     socket.emit('message', formatMessage(botName, 'welcome to AnniChat!'));
 
 
     socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat`));
 
- 
-    })
-
-
+    });
 
     // Listen for user message
     socket.on('chatMessage', msg => {
@@ -56,8 +56,3 @@ io.on('connection', socket => {
 
 
 
-const port = process.env.port || 3000;
-
-server.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
