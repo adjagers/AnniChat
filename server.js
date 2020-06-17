@@ -1,62 +1,56 @@
 const path = require('path');
 const http = require('http');
+const moment = require('moment');
 const express = require('express');
 const socketio = require('socket.io');
-const formatMessage = require('./public/utils/messages');
-const {userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./public/utils/users');
-
+const formatMessage = require('./public/utils/messages'); 
+const db = require('./queries') 
 const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
+const server = http.createServer(app); 
+const io = socketio(server); 
+const port = process.env.PORT || 3000; server.listen(port, () => { console.log(`Server is running on port ${port}`); });
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('*/css',express.static('public/css'));
-app.use('*/js',express.static('public/js'));
-app.use('*/js',express.static('public/utils'));
+   // Routing with express
+app.use(express.static('public'));
+
+app.get('/', (req, res) => { res.sendFile(__dirname + '/public/index.html'); });
+app.get('/rooms', (req, res) => { res.sendFile(__dirname + '/public/rooms.html'); });
+app.get('/chillout-place', (req, res) => { res.sendFile(__dirname + '/public/chat.html'); });
+app.get('/nightlife', (req, res) => { res.sendFile(__dirname + '/public/chat.html'); });
+app.get('/serie-movies', (req, res) => { res.sendFile(__dirname + '/public/chat.html'); });
+app.get('/sports', (req, res) => { res.sendFile(__dirname + '/public/chat.html'); });
 
 const botName = 'Annichat Bot';
-
-const port = process.env.PORT || 3000;
-
-server.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
-
+const tech = io.of('/tech');
 // Runs the client
+tech.on('connection', (socket) => {
+    socket.on('join', (data) => {
+        socket.join(data.room);
 
-io.on('connection', socket => {
-    socket.on('joinRoom', ({username, room}) => {
-        const user = userJoin(socket.id, username, room);
-        socket.join(user.room);
-
-    // Welcome current user
-    socket.emit('message', formatMessage(botName, 'welcome to AnniChat!'));
-
-
-    socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat`));
+        db.getChats(data.room).then(val => {
+            console.log(val)
+            tech.to(socket.id).emit('historyChats', val);
+            tech.in(data.room).emit('singleMessage', `${data.user} joined ${data.room}`)
+        });
 
     });
+    // Listen for user message 
+    socket.on('message', (data) => {
+        console.log(`message ${data.msg}`) 
 
-    // Listen for user message
-    socket.on('chatMessage', msg => {
-        const user = getCurrentUser(socket.id)
-
-        io.to(user.room).emit('message', formatMessage(user.username, msg));
-    })
-
-       // User disconnects to server
-       socket.on('disconnect', () => {
-           const user = userLeave(socket.id);
-
-        if(user) {
-        io.to(user.room).emit('message', formatMessage(botName, `${user.username} has left the chat`));
+        var message = { 
+        user: data.user,
+        room: data.room,
+        msg: data.msg,
+        date: moment().format('h:mm a')
         }
+        let insert = db.insertChats(message);
+        tech.in(data.room).emit('message', message);
     });
+    // User disconnects to server
+    socket.on('disconnect', () => {
+        tech.emit('singleMessage', `user disconnected`);
 
-    // User and Chat info
-
-    
-});
-
-
-
+    });
+   
+    }); 

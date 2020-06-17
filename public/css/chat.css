@@ -1,14 +1,113 @@
+body {
+    margin: 0;
+    width: 100%;
+    font-family: Arial;
+    background: #292929;
+}
+h3 {
+    margin: 0;
+}
 .form-control {
     padding: 12px;
     width: 74%;
     margin: 0 auto;
 }
+.header {
+    padding-top: 20px;
+    height: 89px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background: #1F1F1F;
+    text-align: center;
+    color: #FFFFFF;
+}
 
-.message {
+
+
+.circle {
+    display: inline-flex;
+    margin-top: 14px;
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background: orangered;
+}
+
+.meta {
+    margin-left: 10px;
+    display: inline-flex;
+}
+
+.time {
+    font-size: 11px;
+    color: #CCCCCC;
+}
+
+footer {
+    display: inline-flex;
+    margin: 0 auto;
+    height: 94px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    background: #1F1F1F;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.nav-item {
     color: #fff;
-    padding: 4px;
-    width: 70%;
-    border-radius: 8px;
-    margin: 10px auto;
-    background: rgb(255, 127, 80);
+    line-height: 94px;
+    margin: 0 auto;
+}
+input {
+        width: calc(100% - 38px);
+        height: 48.42px;
+        border-radius: 25px;
+        font-size: 15px;
+        border: none;
+        background: #707070;
+    }
+    input::placeholder {
+        color: #CCCCCC;
+    }
+
+    .user {
+        list-style-type: none;
+        color: white;
+    }
+
+    .container { margin: 0 auto; max-width: 1400px; }
+    body { margin: 0;}
+    #messages {list-style-type: none; width: 50%;}
+    #messages li {padding: 5px 10px;}
+
+    #messages li {
+color: #fff;
+padding: 8px;
+width: 70%;
+border-radius: 8px;
+margin: 10px auto;
+
+
+}
+
+.room__link {
+    color: #C4C4C4;
+    height: 150px;
+    text-decoration: none;
+}
+
+.room__link li {
+    list-style-type: none;
+}
+#messages li:nth-child(odd) {
+background-color: #007EF4;
+}
+
+.chat-form-container {
+    width: 100%;
 }

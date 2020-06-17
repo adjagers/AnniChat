@@ -1,7 +1,11 @@
 body {
-    font-family: monospace;
+    margin: 0;
+    width: 100%;
+    font-family: Arial;
+    background: #292929;
 }
 .container {
+
     margin: 0 auto;
 }
 
@@ -9,14 +13,34 @@ h2 {
     margin: 0;
 }
 
-.header {
-    height: 70px;
-    line-height: 70px;
-    background: #d80032;
-    width: 90%;
-    margin: 0 auto;
+footer {
+    height: 94px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    background: #1F1F1F;
     text-align: center;
-    color: #edf2f4;
+    color: #FFFFFF;
+}
+
+.header {
+    height: 109px;
+    line-height: 109px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background: #1F1F1F;
+    text-align: center;
+    color: #FFFFFF;
+}
+p {
+    margin: 0 auto;
+    height: 105px;
+    font-size: 15px;
+    color: #606060;
+    width: calc(100% -  107px);
+   
 }
 
 form {
@@ -24,14 +48,43 @@ form {
     margin-top: 50px;
     margin: 0 auto;
     color: white;
-    background: #2b2d42;
-    width: 90%;
+
 }
 
 .form-control {
-    padding: 12px;
-    width: 74%;
     margin: 0 auto;
+}
+
+.nickname__field {
+    display: flex;
+    margin: 0 auto;
+    width: calc(100% - 38px);
+    height: 49px;
+    border-radius: 25px;
+    font-size: 15px;
+    border: none;
+    background: #3C3C3C;
+}
+
+.nickname__field::placeholder {
+    color: #CCCCCC;
+}
+
+.button_group {
+    
+}
+
+.nickname__button {
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    background: #007EF4;
+    margin-left: -60px ;
+}
+
+.nickname__button {
+    color: #fff;
 }
 
 .btn {
