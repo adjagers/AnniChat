@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
     <title>Chat App</title>
     <script src="https://kit.fontawesome.com/210d5d1525.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/main.css" />
@@ -11,16 +12,17 @@
     <div class="header"><h2>Enter chatbox</h2></div>
     <form id="form" name="form">
         <div class="group__button">
-            <input class="nickname__field" name="nickname" id="nickname" placeholder="Nickname" type="text"> 
+            <input class="nickname__field" name="nickname" id="nickname" placeholder="Nickname" type="text">
             <button class="nickname__button" type="submit" id="submit"> <i class="icon__button fas fa-sign-out-alt"></i></button>
             </div>
+              <p class="message_failed"></p>
         </div>
-        <p class="message_failed"></p>
+
     </form>
     <p>Here’s some information about this chat.
         Could be anything actually. Like, it’s soo
-        cool! Oh my god, it’s amazing! Nothing 
-        beats this chat. Like, you can talk and 
+        cool! Oh my god, it’s amazing! Nothing
+        beats this chat. Like, you can talk and
         other people talk back at ya! </p>
 </div>
 <footer></footer>
@@ -33,15 +35,6 @@ crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js" integrity="sha256-XNCs31CRX1H2/fMo1nirAAatEzPFIaP8TOTsB3dZjL4=" crossorigin="anonymous"></script>
 
 
-  <script>$('#submit').click(function (e) {
-    e.preventDefault();
-    if ($.trim($('#nickname').val()) == '') {
-        $('.message_failed').append('<div>This nickname already exists. Try another.</div>');  
-    }else{
-        var inputvalue = $('#nickname').val()
-        localStorage.setItem('userName', inputvalue)
-        return window.location.href = "/rooms";
-    }
-  });</script>
+  <script src="main.js"></script>
 </body>
 </html>

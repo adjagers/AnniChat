@@ -7,12 +7,19 @@ body {
 h3 {
     margin: 0;
 }
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .form-control {
     padding: 12px;
     width: 74%;
     margin: 0 auto;
 }
 .header {
+    width: 100%;
     padding-top: 20px;
     height: 89px;
     border-bottom-left-radius: 25px;
@@ -22,7 +29,18 @@ h3 {
     color: #FFFFFF;
 }
 
+.send__message {
+    width: calc(100% - 38px);
+    height: 48.42px;
+    border-radius: 25px;
+    font-size: 15px;
+    border: none;
+    background: #707070;
+}
 
+.send__message::placeholder {
+    color: #CCCCCC;
+}
 
 .circle {
     display: inline-flex;
@@ -63,51 +81,85 @@ footer {
     line-height: 94px;
     margin: 0 auto;
 }
-input {
-        width: calc(100% - 38px);
-        height: 48.42px;
-        border-radius: 25px;
-        font-size: 15px;
-        border: none;
-        background: #707070;
-    }
-    input::placeholder {
-        color: #CCCCCC;
-    }
 
-    .user {
+  .user {
         list-style-type: none;
         color: white;
     }
 
     .container { margin: 0 auto; max-width: 1400px; }
-    body { margin: 0;}
-    #messages {list-style-type: none; width: 50%;}
-    #messages li {padding: 5px 10px;}
+
+    body { margin: 0; }
+
+
+    #messages {
+      list-style-type: none;
+      }
+
+      #messages li:nth-child(odd) {
+        align-self: flex-start;
+        display: flex;
+        margin-bottom: 10px;
+        background-color: #fff;
+      }
+
 
     #messages li {
-color: #fff;
-padding: 8px;
-width: 70%;
-border-radius: 8px;
-margin: 10px auto;
+      align-self: flex-end;
+      height: 80px;
+      padding: 10px;
+      border-radius: 15px;
+      width: 25%;
+      margin-bottom: 10px;
+      color: #fff;
+      background:linear-gradient(10deg, #454545 10%, #2B2B2B);
+    }
 
 
+.flex-item {
+  margin: 0;
 }
 
-.room__link {
-    color: #C4C4C4;
+.room__link  {
+    color: #fff;
     height: 150px;
     text-decoration: none;
+}
+
+.room__link p {
+  margin-top: 5px;
+  color: #5F5F5F;
 }
 
 .room__link li {
     list-style-type: none;
 }
-#messages li:nth-child(odd) {
-background-color: #007EF4;
-}
+
 
 .chat-form-container {
     width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+
+  .container {
+    margin: 0;
+  }
+
+  .chat-sidebar {
+    width: 40%;
+    background: #3E3E3E;
+    display: inline-flex;
+  }
+
+  .chat-main {
+    display: flex;
+  }
+  #messages li {
+    width: 50%;
+  }
+
+  body {
+    background: white;
+  }
 }

@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Chat App</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/browser-image-compression@latest/dist/browser-image-compression.js"></script>
     <link rel="stylesheet" href="css/chat.css" />
 </head>
 <body>
@@ -16,21 +17,27 @@
             <main class="chat-main">
               <div class="chat-sidebar">
                 <h3>Users:</h3>
-                <ul id="users"></ul>
+
               </div>
               <div id="history"></div>
-              <ul id="messages"></ul>
+              <div id="feedback"></div>
+              <ul class="flex-container row" id="messages">
+              <!-- Message being added -->
+              </ul>
             </main>
             <footer>
             <div class="chat-form-container">
               <form id="chat-form">
                 <input
+                  class="send__message"
                   id="m"
                   type="text"
                   placeholder="Type your message"
                   required
                   autocomplete="off"
                 />
+          <input class="send__file" type="file" id="uploadfile" />
+      </div>
                 <!-- <button class="btn"><i class="fas fa-paper-plane"></i> Send</button> -->
               </form>
             </div>

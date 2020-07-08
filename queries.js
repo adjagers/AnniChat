@@ -8,6 +8,18 @@ const client = new pg.Client({
 
 client.connect();
 
+const getUsers = (user) => {
+
+  return new Promise((resolve, reject) => {
+
+    client.query("SELECT * FROM users")
+    .then(result => {
+      resolve(result.rows);
+    })
+    .catch(e => console.error(e.stack))
+  });
+}
+
 const getChats = (roomName) => {
 
     return new Promise((resolve, reject) => {
@@ -28,11 +40,12 @@ const insertChats = (request) => {
         if (error) {
             throw error
         }
-        console.log(`Chat added to room ${data.room}: ${data.chat_text}`);
+        console.log(`Chat added to room ${data.room}: user message`);
     });
 }
 
 module.exports = {
     insertChats,
-    getChats
+    getChats,
+    getUsers
 };
