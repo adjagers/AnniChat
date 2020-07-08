@@ -54,7 +54,7 @@ if (isCurrentRoom) {
 
         if(user === data.user) {
             console.log('message')
-            $('#messages').append($('<li class="mine">').text(data.msg+' - '+data.user+data.date_time));
+            $('#messages').append($('<li class="mine">').text(data.msg+' - '+data.user));
         } else {
             $('#messages').append($('<li class="other">').text(data.msg+' - '+data.user));
         }
